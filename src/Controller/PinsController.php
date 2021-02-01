@@ -16,7 +16,7 @@ class PinsController extends AbstractController
      */
     public function index(PinRepository $pinRepository): Response
     {
-        $pins = $pinRepository->findBy([], ['id' => 'desc']);
+        $pins = $pinRepository->findBy([], ['createdAt' => 'DESC']);
         dump($pins);
         return $this->render('pins/index.html.twig', compact('pins'));
     }
@@ -26,5 +26,15 @@ class PinsController extends AbstractController
     public function show(Pin $pin)
     {
         return $this->render('pins/show.html.twig', compact('pin'));
+    }
+    /**
+     * @Route("/test/{id}")
+     *
+     */
+    public function test(Pin $pin, EntityManagerInterface $em)
+    {
+        $pin->setDescription('Description 5 (edited)');
+        $em->flush();
+        return new Response("ok");
     }
 }
