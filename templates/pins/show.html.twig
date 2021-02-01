@@ -11,5 +11,12 @@
 		</p>
 	</article>
 	<a href="{{ path('app_pins_edit', {id: pin.id} )}}">Edit</a> |
+	<a href="#" onclick="event.preventDefault(); confirm('Are you sure') && document.querySelector('#js-pins-delete-form').submit();">Delete</a> |
 	<a href="{{ path('app_home') }}">Go back</a>
+
+	<form  method="post" id="js-pins-delete-form" action="{{ path('app_pins_delete', {id: pin.id} )}}">
+		<input type="hidden" name="csrf_token" value="{{ csrf_token('pin_deletion_' ~ pin.id)}}">
+		<input type="hidden" name="_method" value="DELETE">
+	</form>
+
 {% endblock %}
