@@ -20,4 +20,11 @@ class PinsController extends AbstractController
         dump($pins);
         return $this->render('pins/index.html.twig', compact('pins'));
     }
+    /**
+     * @Route("/pins/{id<[0-9]+>}",name="app_pins_show")
+     */
+    public function show(Pin $pin)
+    {
+        return $this->render('pins/show.html.twig', compact('pin'));
+    }
 }
