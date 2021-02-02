@@ -7,7 +7,6 @@ use App\Form\PinType;
 use App\Repository\PinRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,7 +19,6 @@ class PinsController extends AbstractController
     public function index(PinRepository $pinRepository): Response
     {
         $pins = $pinRepository->findBy([], ['createdAt' => 'DESC']);
-        dump($pins);
         return $this->render('pins/index.html.twig', compact('pins'));
     }
     /**
