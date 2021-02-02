@@ -57,7 +57,7 @@ class PinsController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-            $this->addFlash('info', 'Pin successfully updated');
+            $this->addFlash('success', 'Pin successfully updated');
             return $this->redirectToRoute('app_home');
         }
         return $this->render('pins/edit.html.twig', [

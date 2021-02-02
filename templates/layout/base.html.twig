@@ -6,32 +6,44 @@
 			{% block title %}Welcome!
 			{% endblock %}
 		</title>
-		{% block stylesheets %}{% endblock %}
-		<style>
-			.alert {
-				padding: 10px;
-				text-align: center;
-			}
-			.alert-success {
-				background: green;
-			}
-			.alert-info {
-				background: blue;
-			}
-			.alert-danger {
-				background: red;
-			}
-		</style>
+		{% block stylesheets %}
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+			<style>
+				.alert {
+					padding: 10px;
+					text-align: center;
+					color: white;
+					margin: 0;
+					border-radius: 0;
+				}
+				.alert-success {
+					background: green;
+				}
+				.alert-info {
+					background: blue;
+				}
+				.alert-danger {
+					background: red;
+				}
+
+			</style>
+		{% endblock %}
 	</head>
 	<body>
+
 		{{ include('layout/partials/_flush_messages.html.twig')}}
-		<nav>
-			<ul>
-				<li><a href="{{path('app_home')}}">Home</a></li>
-				<li><a href="{{path('app_pins_create')}}">New Pin</a></li>
-			</ul>
-		</nav>
-		{% block body %}{% endblock %}
-		{% block javascripts %}{% endblock %}
+		{{ include('layout/partials/_nav.html.twig')}}
+
+		<main roles="main" class="container">
+			{% block body %}{% endblock %}
+		</main>
+
+		{{ include('layout/partials/_footer.html.twig')}}
+
+		{% block javascripts %}
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+			</script>
+		{% endblock %}
+
 	</body>
 </html>
