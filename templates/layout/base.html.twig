@@ -7,8 +7,24 @@
 			{% endblock %}
 		</title>
 		{% block stylesheets %}{% endblock %}
+		<style>
+			.alert {
+				padding: 10px;
+				text-align: center;
+			}
+			.alert-success {
+				background: green;
+			}
+			.alert-info {
+				background: blue;
+			}
+			.alert-danger {
+				background: red;
+			}
+		</style>
 	</head>
 	<body>
+		{{ include('layout/partials/_flush_messages.html.twig')}}
 		<nav>
 			<ul>
 				<li><a href="{{path('app_home')}}">Home</a></li>
