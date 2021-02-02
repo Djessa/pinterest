@@ -74,7 +74,7 @@ class PinsController extends AbstractController
         if($this->isCsrfTokenValid('pin_deletion_' . $pin->getId(),  $request->request->get('csrf_token'))) {
             $em->remove($pin);
             $em->flush();
-            $this->addFlash('danger', 'Pin successfully deleted');
+            $this->addFlash('info', 'Pin successfully deleted');
         }
         return $this->redirectToRoute('app_home');
     }
