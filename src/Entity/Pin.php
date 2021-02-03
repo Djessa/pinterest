@@ -46,6 +46,7 @@ class Pin
     /**
     * @Vich\UploadableField(mapping="pin_image", fileNameProperty="imageName")
     * @Assert\Image(maxSize="8M")
+    * @Assert\NotBlank
      */
     private $imageFile;
     public function getImageFile(): ?File

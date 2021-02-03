@@ -48,12 +48,14 @@ class PinsController extends AbstractController
         ]);
     }
     /**
-     * @Route("/pins/{id}/edit", name="app_pins_edit", methods={"GET", "PUT", "POST"})
+     * @Route("/pins/{id}/edit", name="app_pins_edit", methods={"GET", "PUT"})
      *
      */
     public function edit(Request $request, EntityManagerInterface $em, Pin $pin): Response
     {
-        $form = $this->createForm(PinType::class, $pin);
+        $form = $this->createForm(PinType::class, $pin, 
+            ['method' => 'PUT']
+        );
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
