@@ -3,15 +3,28 @@
 {% block title 'Find all the best pins on earth!'%}
 
 {% block body %}
-	<h1>{{ puralize(pins | length, 'Pin') }}</h1>
-	{% for pin in pins %}
-		<article>
-			<h2>
-				<a href="{{ path('app_pins_show', {id:pin.id}) }}">{{ pin.title }}</a>
-			</h2>
-			<p>{{  pin.description | u.truncate(10, '...', false)}}
-			</p>
-			<p>Submitted {{ pin.createdAt | ago }} </p>
-		</article>
-	{% endfor %}
+	{% if(pins | length > 0 ) %}
+		<h1 class="text-center mb-4 text-muted">{{ puralize(pins | length, 'Pin') }}</h1>
+			{% for row in pins | batch(3) %}
+				<div class="row mb-5">
+					{% for pin in row %}
+						<div class="col-md-4">
+							<article class="pin bg-white rounded shadow">
+								<div class="mw-100 overflow-hidden">
+								<a href="{{ path('app_pins_show', {id:pin.id}) }}"><img src="{{ vich_uploader_asset(pin) | imagine_filter('square_thumbnail_medium') }}" alt="{{ pin.title }}" class="w-100 rounded-top"></a>
+								</div>
+								<h2>
+									<a href="{{ path('app_pins_show', {id:pin.id}) }}">{{ pin.title }}</a>
+								</h2>
+								<p>{{  pin.description | u.truncate(10, '...', false)}}
+								</p>
+								<p>Submitted {{ pin.createdAt | ago }} </p>
+							</article>	
+						</div>
+					{% endfor %}
+				</div>
+			{% endfor %}
+	{% else %}
+		<p class="h1  mt-5 text-center">No pin yet <a href="{{ path('app_pins_create') }}" title="">Be the first</a></p>
+	{% endif %}
 {% endblock %}
